@@ -9,7 +9,7 @@ class Question extends Model
 {
     protected $fillable = ['title', 'body'];
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -40,5 +40,5 @@ class Question extends Model
         }
         return "unanswered";
     }
-    
+
 }
