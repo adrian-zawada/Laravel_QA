@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AskQuestionRequest as AskQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\AskQuestionRequest;
 
 class QuestionsController extends Controller
 {
@@ -76,7 +76,7 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
-        $question->update($request->only('title, body'));
+        $question->update($request->only('title', 'body'));
 
         return redirect('/questions')->with('success', "Your question has been updated.");
     }
