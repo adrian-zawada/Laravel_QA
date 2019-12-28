@@ -91,6 +91,6 @@ class QuestionsController extends Controller
     {
         $question->delete();
 
-        return redirect('/question')->with('success', "Your question has been deleted.");
+        return redirect('/questions')->with('success', "Your question has been deleted.");
     }
 }
