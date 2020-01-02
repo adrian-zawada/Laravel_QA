@@ -5,25 +5,44 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="d-flex algin-items-center">
-                        <h1>{{ $question->title }}</h1>
-                        <div class="ml-auto">
-                            <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary">Back to All Question</a>
+                <div class="card-body">
+                    <div class="card-title">
+                        <div class="d-flex algin-items-center">
+                            <h1>{{ $question->title }}</h1>
+                            <div class="ml-auto">
+                                <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary">Back to All Question</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card-body">
-                    {!! $question->body_html !!}
-                    <div class="float-right">
-                        <span class="text-muted">Answered {{ $question->created_date }}</span>
-                        <div class="media mt-2">
-                            <a href="{{ $question->user->url }}" class="pr-2">
-                                <img src="{{ $question->user->avatar }}" alt="">
+                    <hr>
+
+                    <div class="media">
+                        <div class="d-flex flex-column votes-control">
+                            <a title="This question is useful" class="vote-up">
+                                Vote Up
                             </a>
-                            <div class="media-body mt-1">
-                                <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                            <span class="votes-count">1230</span>
+                            <a title="This question is not useful" class="vote-down off">
+                                Vote Down
+                            </a>
+                            <a title="Click to mark as favorite question (Click again to undo)" class="favorite">
+                                favorite
+                            </a>
+                            <span class="favorite-count">123</span>
+                        </div>
+                        <div class="media-body">
+                            {!! $question->body_html !!}
+                            <div class="float-right">
+                                <span class="text-muted">Answered {{ $question->created_date }}</span>
+                                <div class="media mt-2">
+                                    <a href="{{ $question->user->url }}" class="pr-2">
+                                        <img src="{{ $question->user->avatar }}" alt="">
+                                    </a>
+                                    <div class="media-body mt-1">
+                                        <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
