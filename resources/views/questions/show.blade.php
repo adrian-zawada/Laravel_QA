@@ -20,14 +20,14 @@
                     <div class="media">
                         <div class="d-flex flex-column votes-control">
                             <a title="This question is useful" class="vote-up">
-                                Vote Up
+                                <i class="fas fa-caret-up fa-3x"></i>
                             </a>
                             <span class="votes-count">1230</span>
                             <a title="This question is not useful" class="vote-down off">
-                                Vote Down
+                                <i class="fas fa-caret-down fa-3x"></i>
                             </a>
                             <a title="Click to mark as favorite question (Click again to undo)" class="favorite">
-                                favorite
+                                <i class="fas fa-star fa-2x"></i>
                             </a>
                             <span class="favorite-count">123</span>
                         </div>
