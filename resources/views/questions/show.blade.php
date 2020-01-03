@@ -18,7 +18,7 @@
                     <hr>
 
                     <div class="media">
-                        <div class="d-flex flex-column votes-control">
+                        <div class="d-fex flex-column vote-controls">
                             <a title="This question is useful" class="vote-up">
                                 <i class="fas fa-caret-up fa-3x"></i>
                             </a>
@@ -26,10 +26,10 @@
                             <a title="This question is not useful" class="vote-down off">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a title="Click to mark as favorite question (Click again to undo)" class="favorite">
+                            <a title="Click to mark as favorite question (Click again to undo)" class="favorite mt-2 favorited">
                                 <i class="fas fa-star fa-2x"></i>
+                                <span class="favorites-count">123</span>
                             </a>
-                            <span class="favorite-count">123</span>
                         </div>
                         <div class="media-body">
                             {!! $question->body_html !!}
@@ -37,7 +37,7 @@
                                 <span class="text-muted">Answered {{ $question->created_date }}</span>
                                 <div class="media mt-2">
                                     <a href="{{ $question->user->url }}" class="pr-2">
-                                        <img src="{{ $question->user->avatar }}" alt="">
+                                        <img src="{{ $question->user->avatar }}">
                                     </a>
                                     <div class="media-body mt-1">
                                         <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
