@@ -11427,7 +11427,7 @@ form.form-delete {
 
 .vote-controls a.favorite.favorited,
 .vote-controls a.favorite.favorited:hover {
-  color: #ffed4a;
+  color: #ffc107;
 }
 
 .vote-controls a.vote-accepted {
