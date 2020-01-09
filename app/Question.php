@@ -59,7 +59,7 @@ class Question extends Model
 
     public function favorites()
     {
-        return $this->belongsToMany(User::class, 'favorites'); //, 'question_id', 'user_id');
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps(); //, 'question_id', 'user_id');
     }
 
     public function isFavorited()
