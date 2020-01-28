@@ -17,7 +17,7 @@ class CreateVotablesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('votable_id');
             $table->string('votable_type');
-            $table->tinyInteger('vote')->comment('-1: down vote, 1: ip vote');
+            $table->tinyInteger('vote')->comment('-1: down vote, 1: up vote');
             $table->timestamps();
             $table->unique(['user_id', 'votable_id', 'votable_type']);
         });
