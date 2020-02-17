@@ -82,7 +82,7 @@ class User extends Authenticatable
             $voteQuestions->updateExistingPivot($question, ['vote' => $vote]);
         }
         else {
-            $voteQuestions->attach($question, ['vote', $vote]);
+            $voteQuestions->attach($question, ['vote' => $vote]);
         }
 
         $question->load('votes');
