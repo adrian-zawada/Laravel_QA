@@ -18,6 +18,7 @@
                     <hr>
 
                     <div class="media">
+                    <vote :model="{{ $question }}" name="question"></vote>
                         @include('shared._vote', [
                             'model' => $question
                         ])
