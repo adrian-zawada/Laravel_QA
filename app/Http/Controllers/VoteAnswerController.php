@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Answer;
+use Illuminate\Http\Request;
 
 class VoteAnswerController extends Controller
 {

@@ -11750,6 +11750,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11774,11 +11776,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     title: function title(voteType) {
-      var title = {
+      var titles = {
         up: "This ".concat(this.name, " is useful"),
         down: "This ".concat(this.name, " is not useful")
       };
-      return title[voteType];
+      return titles[voteType];
     },
     voteUp: function voteUp() {
       this._vote(1);
