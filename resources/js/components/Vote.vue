@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import Favorite from './Favorite';
-import Accept from './Accept';
+import Favorite from './Favorite.vue';
+import Accept from './Accept.vue';
 
 export default {
     props: ['name', 'model'],
@@ -32,7 +32,7 @@ export default {
         }
     },
 
-    component : {
+    components : {
         Favorite,
         Accept
     },
