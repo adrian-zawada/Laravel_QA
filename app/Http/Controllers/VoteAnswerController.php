@@ -22,9 +22,12 @@ class VoteAnswerController extends Controller
                 'message' => 'Thanks for feedback',
                 'votesCount' => $votesCount
 
+<<<<<<< HEAD
             ]);
         }
 
+=======
+>>>>>>> Revert "Update VoteAnswerController.php"
         return back();
     }
 }
