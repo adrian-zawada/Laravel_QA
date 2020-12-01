@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Policies\QuestionPolicy;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
