@@ -11591,6 +11591,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.fetch("/questions/".concat(this.questionId, "/answers"));
   },
   methods: {
+    add: function add(answer) {
+      this.answers.push(answer);
+      this.count++;
+    },
     remove: function remove(index) {
       this.answers.splice(index, 1);
       this.count--;
@@ -11727,7 +11731,7 @@ __webpack_require__.r(__webpack_exports__);
     create: function create() {
       var _this = this;
 
-      axios.post("questions/".concat(this.questionId, "/answers"), {
+      axios.post("/questions/".concat(this.questionId, "/answers"), {
         body: this.body
       })["catch"](function (error) {
         _this.$toast.error(error.response.data.message, "Error");
@@ -11843,7 +11847,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      count: this.model.votes_count,
+      count: this.model.votes_count || 0,
       id: this.model.id
     };
   },
@@ -48435,7 +48439,10 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("new-answer")
+      _c("new-answer", {
+        attrs: { "question-id": _vm.question.id },
+        on: { created: _vm.add }
+      })
     ],
     1
   )
