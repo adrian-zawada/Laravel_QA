@@ -11722,6 +11722,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['questionId'],
+  methods: {
+    create: function create() {
+      var _this = this;
+
+      axios.post("questions/".concat(this.questionId, "/answers"), {
+        body: this.body
+      })["catch"](function (error) {
+        _this.$toast.error(error.response.data.message, "Error");
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.$toast.success(data.message, "Success");
+
+        _this.body = '';
+
+        _this.$emit('created', data.answer);
+      });
+    }
+  },
   data: function data() {
     return {
       body: ''
@@ -48495,42 +48515,53 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c("form", [
-            _c("div", { staticClass: "form-group" }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.body,
-                    expression: "body"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { required: "", name: "body", rows: "7" },
-                domProps: { value: _vm.body },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.body = $event.target.value
-                  }
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.create($event)
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-lg btn-outline-primary",
-                  attrs: { type: "submit", disabled: _vm.isInvalid }
-                },
-                [_vm._v("Submit")]
-              )
-            ])
-          ])
+              }
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.body,
+                      expression: "body"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { required: "", name: "body", rows: "7" },
+                  domProps: { value: _vm.body },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.body = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-lg btn-outline-primary",
+                    attrs: { type: "submit", disabled: _vm.isInvalid }
+                  },
+                  [_vm._v("Submit")]
+                )
+              ])
+            ]
+          )
         ])
       ])
     ])

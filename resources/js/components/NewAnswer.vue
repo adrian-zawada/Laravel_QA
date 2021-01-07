@@ -7,7 +7,7 @@
                         <h3>Your Answer</h3>
                     </div>
                     <hr>
-                    <form>
+                    <form @submit.prevent="create">
                         <div class="form-group">
                             <textarea class="form-control" required v-model="body" name="body" rows="7"></textarea>
                         </div>
@@ -23,6 +23,24 @@
 
 <script>
 export default {
+    props: ['questionId'],
+
+    methods: {
+        create () {
+            axios.post(`questions/${this.questionId}/answers`, {
+                body: this.body
+            })
+            .catch(error => {
+                this.$toast.error(error.response.data.message, "Error");
+            })
+            .then(({data}) => {
+                this.$toast.success(data.message, "Success");
+                this.body = '';
+                this.$emit('created', data.answer);
+            })
+        }
+    },
+
     data () {
         return {
             body: ''
