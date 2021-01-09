@@ -109,6 +109,37 @@ export default {
                 this.$toast.success(data.message, "Success", { timeout: 3000 });
                 this.editing = false;
             })
+        },
+
+        destroy() {
+            this.$toast.question('Are you sure about that?', "Confirm", {
+            timeout: 20000,
+            close: false,
+            overlay: true,
+            displayMode: 'once',
+            id: 'question',
+            zindex: 999,
+            title: 'Hey',
+            position: 'center',
+            buttons: [
+                ['<button><b>YES</b></button>', (instance, toast) => {
+
+                        axios.delete(this.endpoint)
+                        .then(({data}) => {
+                            this.$toast.success(data.message, "Success", { timeout: 2000 });
+                        });
+
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+                    }],
+                ]
+            });
+
         }
     }
 }

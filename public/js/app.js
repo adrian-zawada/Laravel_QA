@@ -11882,6 +11882,36 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.editing = false;
       });
+    },
+    destroy: function destroy() {
+      var _this2 = this;
+
+      this.$toast.question('Are you sure about that?', "Confirm", {
+        timeout: 20000,
+        close: false,
+        overlay: true,
+        displayMode: 'once',
+        id: 'question',
+        zindex: 999,
+        title: 'Hey',
+        position: 'center',
+        buttons: [['<button><b>YES</b></button>', function (instance, toast) {
+          axios["delete"](_this2.endpoint).then(function (_ref3) {
+            var data = _ref3.data;
+
+            _this2.$toast.success(data.message, "Success", {
+              timeout: 2000
+            });
+          });
+          instance.hide({
+            transitionOut: 'fadeOut'
+          }, toast, 'button');
+        }, true], ['<button>NO</button>', function (instance, toast) {
+          instance.hide({
+            transitionOut: 'fadeOut'
+          }, toast, 'button');
+        }]]
+      });
     }
   }
 });
