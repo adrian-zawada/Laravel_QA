@@ -2,7 +2,24 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body">
+                <form class="card-body" v-if="editing" @submit.prevent="update">
+                    <div class="card-title">
+                        <input type="text" class="form-control form-control-lg" v-model="title">
+                    </div>
+
+                    <hr>
+
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="form-group">
+                                <textarea v-model="body" rows="10" class="form-control" required></textarea>
+                            </div>
+                            <button class="btn btn-primary" :disabled="isInvalid">Update</button>
+                            <button class="btn btn-outline-secondary" type="button" @click="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="card-body" v-else>
                     <div class="card-title">
                         <div class="d-flex algin-items-center">
                             <h1>{{ title }}</h1>
