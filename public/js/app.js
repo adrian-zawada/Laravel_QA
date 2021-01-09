@@ -11833,8 +11833,56 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: this.question.title,
       body: this.question.body,
-      bodyHtml: this.question.body_html
+      bodyHtml: this.question.body_html,
+      editing: false,
+      id: this.question.id,
+      beforeEditCache: {}
     };
+  },
+  computed: {
+    isInvisible: function isInvisible() {
+      return this.body.lenght < 10 || this.title.lenght < 10;
+    },
+    endpoint: function endpoint() {
+      return "/question/".concat(this.id);
+    }
+  },
+  methods: {
+    edit: function edit() {
+      this.beforeEditCache = {
+        body: this.body,
+        title: this.title
+      };
+      this.editing = true;
+    },
+    cancel: function cancel() {
+      this.body = this.beforeEditCache.body;
+      this.title = this.beforeEditCache.title;
+      this.editing = false;
+    },
+    update: function update() {
+      var _this = this;
+
+      axios.put(this.endpoint, {
+        body: this.body,
+        title: this.title
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+
+        _this.$toast.error(response.data.message, "Error", {
+          timeout: 3000
+        });
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this.bodyHtml = data.bodyHtml;
+
+        _this.$toast.success(data.message, "Success", {
+          timeout: 3000
+        });
+
+        _this.editing = false;
+      });
+    }
   }
 });
 

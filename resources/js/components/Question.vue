@@ -64,7 +64,51 @@ export default {
         return {
             title: this.question.title,
             body: this.question.body,
-            bodyHtml: this.question.body_html
+            bodyHtml: this.question.body_html,
+            editing: false,
+            id: this.question.id,
+            beforeEditCache: {}
+        }
+    },
+
+    computed: {
+        isInvisible () {
+            return this.body.lenght < 10 || this.title.lenght < 10;
+        },
+
+        endpoint () {
+            return `/question/${this.id}`;
+        }
+    },
+
+    methods: {
+        edit () {
+            this.beforeEditCache = {
+                body: this.body,
+                title: this.title
+            };
+            this.editing = true;
+        },
+
+        cancel () {
+            this.body = this.beforeEditCache.body;
+            this.title = this.beforeEditCache.title;
+            this.editing = false;
+        },
+
+        update () {
+            axios.put(this.endpoint, {
+                body: this.body,
+                title: this.title
+            })
+            .catch(({response}) => {
+                this.$toast.error(response.data.message, "Error", { timeout: 3000 });
+            })
+            .then(({data}) => {
+                this.bodyHtml = data.bodyHtml;
+                this.$toast.success(data.message, "Success", { timeout: 3000 });
+                this.editing = false;
+            })
         }
     }
 }
