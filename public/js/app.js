@@ -11840,11 +11840,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    isInvisible: function isInvisible() {
+    isInvalid: function isInvalid() {
       return this.body.lenght < 10 || this.title.lenght < 10;
     },
     endpoint: function endpoint() {
-      return "/question/".concat(this.id);
+      return "/questions/".concat(this.id);
     }
   },
   methods: {
@@ -11903,6 +11903,9 @@ __webpack_require__.r(__webpack_exports__);
               timeout: 2000
             });
           });
+          setTimeout(function () {
+            window.location.href = "/questions";
+          }, 3000);
           instance.hide({
             transitionOut: 'fadeOut'
           }, toast, 'button');

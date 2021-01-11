@@ -72,12 +72,12 @@ export default {
     },
 
     computed: {
-        isInvisible () {
+        isInvalid () {
             return this.body.lenght < 10 || this.title.lenght < 10;
         },
 
         endpoint () {
-            return `/question/${this.id}`;
+            return `/questions/${this.id}`;
         }
     },
 
@@ -111,7 +111,7 @@ export default {
             })
         },
 
-        destroy() {
+        destroy () {
             this.$toast.question('Are you sure about that?', "Confirm", {
             timeout: 20000,
             close: false,
@@ -124,20 +124,19 @@ export default {
             buttons: [
                 ['<button><b>YES</b></button>', (instance, toast) => {
 
-                        axios.delete(this.endpoint)
-                        .then(({data}) => {
-                            this.$toast.success(data.message, "Success", { timeout: 2000 });
-                        });
-
-                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-                    }, true],
-                    ['<button>NO</button>', function (instance, toast) {
-
-                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-                    }],
-                ]
+                    axios.delete(this.endpoint)
+                    .then(({data}) => {
+                        this.$toast.success(data.message, "Success", { timeout: 2000 });
+                    });
+                    setTimeout(() => {
+                        window.location.href = "/questions";
+                    }, 3000);
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                }, true],
+                ['<button>NO</button>', function (instance, toast) {
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                }],
+            ]
             });
 
         }
