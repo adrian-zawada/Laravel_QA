@@ -11874,7 +11874,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }).then(function (_ref2) {
         var data = _ref2.data;
-        _this.bodyHtml = data.bodyHtml;
+        _this.bodyHtml = data.body_html;
 
         _this.$toast.success(data.message, "Success", {
           timeout: 3000
@@ -48899,7 +48899,7 @@ var render = function() {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.authorize("modify", _vm.question)
+                          _vm.authorize("deleteQuestion")
                             ? _c(
                                 "button",
                                 {
@@ -61326,6 +61326,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   accept: function accept(user, answer) {
     return user.id === answer.question.user_id;
+  },
+  deleteQuestion: function deleteQuestion(user, question) {
+    return user.id === question.user_id && question.answers_count < 1;
   }
 });
 

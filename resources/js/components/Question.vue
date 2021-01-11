@@ -40,7 +40,7 @@
                                 <div class="col-4">
                                     <div class="ml-auto">
                                         <a v-if="authorize('modify', question)" @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
-                                        <button v-if="authorize('modify', question)" @click="destroy" class="btn btn-sm btn-outline-danger">DELETE</button>
+                                        <button v-if="authorize('deleteQuestion')" @click="destroy" class="btn btn-sm btn-outline-danger">DELETE</button>
                                     </div>
                                 </div>
                                 <div class="col-4"></div>
@@ -105,7 +105,7 @@ export default {
                 this.$toast.error(response.data.message, "Error", { timeout: 3000 });
             })
             .then(({data}) => {
-                this.bodyHtml = data.bodyHtml;
+                this.bodyHtml = data.body_html;
                 this.$toast.success(data.message, "Success", { timeout: 3000 });
                 this.editing = false;
             })
